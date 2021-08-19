@@ -35,6 +35,7 @@ SECRET_KEY = '01j88z$j1n00*fddan*tj#(i%45laqtervjln9*yqbr(3m+fly'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+#DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'piwebsite', 'tinkabell.ddns.net', 'tinkabell.co.uk']
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+  <head>
+    <title>{{ title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Wall/prayer.css' %}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+      .roundStatus {
+        background-color: {{ colour }}; /*rgb(red, green, blue)*/
+      }
+      /*
+      .roundButton {
+        background-color: {{ colour }}; /*rgb(red, green, blue)*/
+      }
+      */
+      .prayer {
+        border-color: {{ colour }};
+      }
+    </style>
+  </head>
+  <body>
+    <h1>requested.html</h1>
+    <h1>{{ title }}</h1>
+    <h3>The date and time on the server is: {{ time }}</h3>
+    <hr/
+    <p> 
+    {% if number %}
+      <a href="{% url 'Wall:prayer' number %}" class="roundButton"> View New Prayer </a>
+    {% else %}
+      No 'number' provided. <br/>
+    {% endif %}
+    {% if previous %}
+      <a href="{% url 'Wall:prayer' previous %}" class="roundButton"> View Old Prayer </a>
+      <a href="{% url 'Wall:request' previous %}" class="roundButton"> Request another Prayer </a>
+    {% else %}
+      {% if col %}
+      <a href="{% url 'Wall:panel' col row %}" class="roundButton"> View Old Panel </a>
+      <a href="{% url 'Wall:request' col row %}" class="roundButton"> Request another Prayer </a>
+      {% else %}
+      <a href="{% url 'Wall:index' %}" class="roundButton"> View Wall </a>
+      <a href="{% url 'Wall:request' %}" class="roundButton"> Request another Prayer </a>
+      {% endif %}
+    {% endif %}
+    </p> 
+    <hr/>
+  </body>
+</html>

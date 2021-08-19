@@ -1,0 +1,40 @@
+
+    <ol>
+    {% if title %}
+        <li>title: {{ title }}</li>
+    {% else %}
+        <li>no title</li>
+    {% endif %}
+    {% if time %}
+        <li>time: {{ time }}</li>
+    {% else %}
+        <li>no time</li>
+    {% endif %}
+    {% if number %}
+        <li>number: {{ number }}</li>
+    {% else %}
+        <li>no number</li>
+    {% endif %}
+    {% if previous %}
+        <li>previous: {{ previous }}</li>
+    {% else %}
+        <li>no previous</li>
+    {% endif %}
+    {% if col %}
+        <li>col: {{ col }}</li>
+    {% else %}
+        <li>no col</li>
+    {% endif %}
+    {% if row %}
+        <li>row: {{ row }}</li>
+    {% else %}
+        <li>no row</li>
+    {% endif %}
+    {% if data %}
+    {% for key, value in data.items %}
+        <li>{{ key }}: {{ value }}</li>
+    {% endfor %}    
+    {% else %}
+        <li>no data</li>
+    {% endif %}
+    </ol>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+  <head>
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bookings/booking.css' %}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <img src="{% static 'bookings/icon.png' %}" alt="Bookings" style="padding:10px;height:50px;float:left;">
+    <h1>{{ title }}</h1>
+    {% block top %}
+    {% endblock %}
+    {% block main %}
+    {% endblock %}
+    <hr/>
+    {% block bottom %}
+    <p>The date and time on the server is: {{ time }}</p>
+    {% endblock %}
+  </body>
+</html>
+

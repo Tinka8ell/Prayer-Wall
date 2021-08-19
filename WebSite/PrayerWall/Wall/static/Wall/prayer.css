@@ -1,0 +1,85 @@
+body {
+  background: lightblue;
+  font-size: 100%;
+  color: black;
+  padding: 10px;
+  margin: 0;
+}
+
+p {
+  position: relative;
+  font-weight: normal;
+  margin: 5px;
+}
+
+.prayer {
+  width : 90%;
+  background: pink;
+  color: black;
+  text-align: left;
+  font-style: normal;
+  border-color: black;
+  border-style: solid;
+  border-width: thick;
+}
+.subject {
+  width : 80%;
+  font-size: 1.5em; 
+  text-align: center;
+}
+.author {
+  position: relative;
+  margin-left: auto;
+  text-align: right;
+  font-style: italic;
+}
+
+.status {
+  float: right;
+  position: relative;
+  top: -5px;
+  right: -15px;
+  padding: 10px 0px;
+  text-align: right;
+}
+
+.roundStatus {
+  float: right;
+  position: relative;
+  top: -5px;
+  right: -5px;
+  background-color: green;
+  padding: 10px 20px;
+  text-align: right;
+  border-radius: 20px;
+  font-size: 1em; 
+  color: white; 
+  font-weight: bold;
+}
+
+.roundButton {
+  background-color: blue;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 1em; 
+  color: white; 
+  font-weight: bold;
+  height: 56px;
+}
+
+/* Style the button table */
+.buttons table, tr, td {
+  text-align: center;/*
+  border-collapse: separate;*/
+  height: 40px;
+}
+
+.response {
+  border-color: black;
+  border-style: double;
+  display: block;
+  margin-left: auto;
+  font-style: italic;
+  width: 90%;
+}

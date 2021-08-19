@@ -1,0 +1,53 @@
+{% extends "Wall/base.html" %}
+    {% load static %}
+
+{% block top %}
+    <table class="buttons">
+      <tr class="buttons"><td> 
+      <!--
+      <a href="https://sites.google.com/view/pray4chichester/spaces" class="roundButton"> Virtual Prayer Spaces </a>
+      </td><td>
+      --> 
+      <a href="{% url 'Wall:request' %}" class="roundButton"> Request a Prayer </a>
+      </td></tr> 
+    </table> 
+    <hr/>
+{% endblock %}
+
+{% block main %}
+    <p> Click on any square to zoom into a panel of the wall </p>
+    <div class="wall">
+      <table class="wall" width="100%">
+        {% for c, r, img, panel in wall %}
+        {% if c == 0 %}
+        <tr>
+        {% endif %}
+          <td>
+            <a href="{% url 'Wall:panel' c r %}"> 
+              <div class="panel">
+                <image class="pimg" src="{% static img %}" width="100%">
+                <table class="frame" width="100%">
+                  {% for line in panel %}
+                  <tr>
+                    {% for id, subject, count in line %}
+                    <td>
+                      {% if id > 0 %}
+                      <div class="box c{{count}}" height="100%" width="100%">&nbsp;</div>
+                      {% else %}
+                      <div class="box" height="100%" width="100%">&nbsp;</div>
+                      {% endif %}
+                    </td>
+                    {% endfor %}
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
+            </a>
+          </td>
+        {% if forloop.last %}
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </table>
+    </div>
+{% endblock %}

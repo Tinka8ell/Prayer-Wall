@@ -1,0 +1,63 @@
+{% extends "Wall/base.html" %}
+    {% load static %}
+
+{% block top %}
+    <table class="buttons">
+      <tr class="buttons"><td> 
+      <!--
+      <a href="https://sites.google.com/view/pray4chichester/spaces" class="roundButton"> Virtual Prayer Spaces </a>
+      -->
+      </td><td> 
+      {% if upc %}
+      <a href="{% url 'Wall:panel' upc upr %}" class="roundButton"> Up </a>
+      {% endif %}
+      </td><td> 
+      <a href="{% url 'Wall:request' col row %}" class="roundButton"> Request a Prayer </a>
+      </td></tr> 
+      <tr class="buttons"><td> 
+      {% if leftc %}
+      <a href="{% url 'Wall:panel' leftc leftr %}" class="roundButton"> Left </a>
+      {% endif %}
+      </td><td> 
+      <a href="{% url 'Wall:index' %}" class="roundButton"> Back to Wall </a>
+      </td><td> 
+      {% if rightc %}
+      <a href="{% url 'Wall:panel' rightc rightr %}" class="roundButton"> Right </a>
+      {% endif %}
+      </td></tr> 
+      <tr class="buttons"><td> 
+      </td><td> 
+      {% if downc %}
+      <a href="{% url 'Wall:panel' downc downr %}" class="roundButton"> Down </a>
+      {% endif %}
+      </td></tr> 
+    </table> 
+    <hr/>
+{% endblock %}
+
+{% block main %}
+    <ul>
+      <li> Hover over any square to see prayer title </li>
+      <li> Click on any square to zoom into that prayer </li>
+    </ul>
+    <div class="panel">
+      <image class="panel" src="{% static panel %}" width="100%">
+      <table class="frame" width="100%">
+        {% for line in prayers %}
+        <tr>
+          {% for id, subject, count in line %}
+          <td>
+          {% if id > 0 %}
+            <a href="{% url 'Wall:prayer' id %}"> 
+              <div class="box c{{count}}" height="100%" width="100%">{{subject}}</div>
+            </a>
+          {% else %}
+            <div class="box" height="100%" width="100%">&nbsp;</div>
+          {% endif %}
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+{% endblock %}

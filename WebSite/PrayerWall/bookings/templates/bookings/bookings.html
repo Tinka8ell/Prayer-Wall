@@ -1,0 +1,84 @@
+{% extends "bookings/base.html" %}
+
+{% block top %}
+    {% if isWatch %}
+        <h2> {{ start }} for {{ length }} days </h2>
+    {% else %}
+        <h2> {{ start }} for {{ length }} hours </h2>
+    {% endif %}
+    <h3> 
+    {% if location.size > 0 %}
+        {% if location.size > 1 %}
+            At {{ location.name }} (limited to {{ location.size }} people per slot):
+        {% else %}
+            At {{ location.name }} (limited to one person per slot):
+        {% endif %}
+    {% else %}
+        At {{ location.name }}:
+    {% endif %}
+    </h3>
+    {% if alternatives %}
+        {% if alternatives|length > 0 %}
+            {% if alternatives|length > 1 %}
+                <p>
+                    Alternative locations:
+                    <ul>
+                    {% for alt in alternatives %}
+                        <li> <a href="{% url 'bookings:schedule' alt.0 %}"> {{ alt.1 }} </a> </li>
+                    {% endfor %}
+                    </ul>
+                </p>
+            {% else %}
+                {% url 'bookings:schedule' as link %}
+                <p>
+                    Alternative location: <a href="{% url 'bookings:schedule' alternatives.0.0 %}"> {{ alternatives.0.1 }} </a>
+                </p>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    <table width="100%">
+        <tr>
+            <td> Key: </td>
+            <td class="slotFree"> Free </td>
+            <td class="slotCovered"> Covered </td>
+            <td class="slotFull"> Full </td>
+        </tr>
+    </table>
+    <hr/>
+{% endblock %}
+
+{% block main %}
+    <table width="100%">
+        <tr>
+            <td> Time </td>
+            <td> Bookings </td>
+            <td> Status </td>
+        </tr>
+        {% for time, slot in location.bookings.items %}
+        <tr class="{{ slot.status }}">
+            <td>{{ time }}</td>
+            <td> 
+            {% if slot.count > 0 %}
+                {% if slot.count > 1 %}
+                    {{ slot.count }} people:
+                {% else %}
+                    One person:
+                {% endif %}
+                {% for person in slot.people %}
+                    <br/> {{ person }} 
+                {% endfor %}
+            {% else %}
+              None
+            {% endif %}
+            </td>
+            <td> 
+                {% if slot.status == 'slotFull' %}
+                    Full
+                {% else %}
+                    <a href="{% url 'bookings:booking' slot.slot %}"> Bookable </a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+     </table> 
+{% endblock %}

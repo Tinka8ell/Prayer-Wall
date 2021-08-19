@@ -1,0 +1,19 @@
+{% extends "Wall/base.html" %}
+    {% load static %}
+
+{% block top %}
+    <p> 
+        Thank you for praying for Prayer #{{ number }}
+    </p>
+    <hr/>
+{% endblock %}
+
+{% block main %}
+    <p> 
+        <a href="https://sites.google.com/view/pray4chichester/spaces" class="roundButton"> Virtual Prayer Spaces </a>
+        <a href="{% url 'Wall:request' number %}" class="roundButton"> Request a Prayer </a>
+        <a href="{% url 'Wall:wall' %}" class="roundButton"> Back to Wall </a>
+        <a href="{% url 'Wall:panel' cr %}" class="roundButton"> Back to Panel </a>
+        <a href="{% url 'Wall:prayer' number %}" class="roundButton"> Back to Prayer </a>
+    </p> 
+{% endblock %}

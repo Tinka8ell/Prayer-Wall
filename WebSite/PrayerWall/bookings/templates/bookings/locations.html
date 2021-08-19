@@ -1,0 +1,30 @@
+{% extends "bookings/base.html" %}
+
+{% block top %}
+    <h2> Bookings for {{ title }} </h2>
+    <h3> {{ start }} for {{ length }} hours </h3>
+{% endblock %}
+
+{% block main %}
+    {% if locations %}
+        <p> Locations: </p>
+        {% if locations|length > 0 %}
+            <ul>
+            {% for location in locations %}
+                <li>
+                    <a href="{% url 'bookings:schedule' location.schedule %}"> {{ location.name }} </a>
+                    {% if location.size == 0 %}
+                        with no restrictions on numbers
+                    {% else %}
+                        with maximum of {{ location.size }} people in any slot
+                    {% endif %} 
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Locations are missing!</p>
+        {% endif %}
+    {% else %}
+        <p>No locations</p>
+    {% endif %}
+{% endblock %}

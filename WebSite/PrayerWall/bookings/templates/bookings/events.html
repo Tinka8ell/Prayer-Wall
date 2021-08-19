@@ -1,0 +1,20 @@
+{% extends "bookings/base.html" %}
+
+{% block main %}
+    <ol>
+    {% if events %}
+        <li>events:</li>
+        <ol>
+        {% for event in events %}
+            <li> event: </li>
+            <ul>
+                <li> <a href="{% url 'bookings:event' event.number %}"> {{ event.name }} </a> </li>
+                <li> {{ event.start }} for {{ event.length }} hours </li>
+            </ul>
+        {% endfor %}
+        </ol>    
+    {% else %}
+        <li>no events</li>
+    {% endif %}
+    </ol>
+{% endblock %}

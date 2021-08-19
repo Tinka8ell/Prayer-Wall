@@ -1,0 +1,30 @@
+{% extends "Wall/base.html" %}
+
+{% block top %}
+    {% if form.subject.errors %}
+        <ol>
+        {% for error in form.subject.errors %}
+            <li><strong>{{ error|escape }}</strong></li>
+        {% endfor %}
+        </ol>
+    <hr/
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    {% if previous %}
+        <form action="{% url 'Wall:request' previous %}" method="post">
+    {% else %}
+        {% if col %}
+            <form action="{% url 'Wall:request' col row %}" method="post">
+        {% else %}
+            <form action="{% url 'Wall:request' %}" method="post">
+        {% endif %}
+    {% endif %}
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <p> <input type="submit" value="Request Prayer" class="roundButton"> </p>
+    </form>
+{% endblock %}

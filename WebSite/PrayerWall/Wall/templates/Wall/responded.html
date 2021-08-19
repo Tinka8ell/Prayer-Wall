@@ -1,0 +1,9 @@
+{% extends "Wall/base.html" %}
+
+{% block main %}
+    <p> 
+      <a href="{% url 'Wall:prayer' number %}" class="roundButton"> View New Prayer </a>
+      <a href="{% url 'Wall:index' %}" class="roundButton"> View Wall </a>
+    </p> 
+{% endblock %}
+

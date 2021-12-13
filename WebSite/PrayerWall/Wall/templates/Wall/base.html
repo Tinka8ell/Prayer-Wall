@@ -2,6 +2,11 @@
   <head>
     <title>{% block title %}{{ title }}{% endblock %}</title>
     {% load static %}
+    <!--  Support for light / dark colour schemes and using web site style ... -->
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <link rel="stylesheet" href="/style/style.css">
+    <!-- Use local project overrides -->
     <link rel="stylesheet" href="{% static 'Wall/prayer.css' %}">
     <link rel="stylesheet" href="{% static 'Wall/wall.css' %}">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
